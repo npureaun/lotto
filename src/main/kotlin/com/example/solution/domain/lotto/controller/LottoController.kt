@@ -66,8 +66,8 @@ class LottoController(
     }
 
     @GetMapping("/result")
-    fun getLottoResult(@RequestParam phone: String):ResponseEntity<LottoResultResponse>{
-        return ResponseEntity.ok().body(lottoService.getLottoResult(phone))
+    fun getLottoResult(@RequestParam lottoNumber: String):ResponseEntity<LottoResultResponse>{
+        return ResponseEntity.ok().body(lottoService.getLottoResult(lottoNumber))
     }
 
     @PostMapping("/generate")

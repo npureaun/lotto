@@ -27,10 +27,10 @@ class LottoServiceImpl(
         registrationService.setRegistrationNumber(lotto.id!!,phone)
     }
 
-    override fun getLottoResult(phone: String): LottoResultResponse {
-        registrationService.checkNumber(phone, checkParam = false)
-        val result = registrationService.getRegistrationNumber(phone)
-        return LottoResultResponse.convertDto(result)
+    override fun getLottoResult(lottoNumber: String): LottoResultResponse {
+        return lottoRepository.findByNumber(lottoNumber)
+            ?.let { LottoResultResponse.toDto(it) }
+            ?: throw IllegalArgumentException("없는 번호 입니다.")
     }
 
     private fun getLotto(): Lotto {

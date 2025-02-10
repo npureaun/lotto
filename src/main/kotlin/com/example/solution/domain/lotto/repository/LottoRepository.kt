@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface LottoRepository:JpaRepository<Lotto,Long> {
     fun findTopByIsUseFalseOrderByIdAsc(): Lotto?
+    fun findByNumber(lottoNumber:String):Lotto?
 }
