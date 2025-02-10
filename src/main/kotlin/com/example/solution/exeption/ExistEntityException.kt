@@ -1,4 +1,4 @@
-package com.example.solution.domain.exeption
+package com.example.solution.exeption
 
 data class ExistEntityException(
     val errorMessage: String

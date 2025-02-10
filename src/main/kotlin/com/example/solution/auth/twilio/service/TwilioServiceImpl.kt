@@ -7,16 +7,16 @@ import com.example.solution.auth.twilio.dto.UserVerifyCodeRequestDto
 import com.twilio.rest.verify.v2.service.Verification
 import com.twilio.rest.verify.v2.service.VerificationCheck
 import org.springframework.context.annotation.Configuration
+import org.springframework.stereotype.Service
 
-@Configuration
+@Service
 class TwilioServiceImpl(
     private val twilioConfig: TwilioConfig
 ): TwilioService {
     // 인증 번호 요청
     override fun verification(userVerifyCodeRequestDto: UserVerifyCodeRequestDto): String {
         val e164FormatPhoneNumber: String = EncodeUtils.getE164FormatPhoneNumber(userVerifyCodeRequestDto.phone)
-        println(userVerifyCodeRequestDto.phone)
-        println(e164FormatPhoneNumber)
+
         val verification: Verification = Verification.creator(
             twilioConfig.getServiceSid(),
             e164FormatPhoneNumber,
@@ -38,8 +38,7 @@ class TwilioServiceImpl(
                 .setTo(e164FormatPhoneNumber)
                 .setCode(userVerifyCheckRequestDto.code)
                 .create()
-
-            println(verificationCheck.status)
+            check(verificationCheck.valid)
         } catch (e: Exception) {
             throw IllegalStateException("인증 실패")
         }

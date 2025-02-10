@@ -1,6 +1,6 @@
 package com.example.solution.domain.registration.service
 
-import com.example.solution.domain.exeption.ExistEntityException
+import com.example.solution.exeption.ExistEntityException
 import com.example.solution.domain.registration.dto.RegistrationResponse
 import com.example.solution.domain.registration.entity.Registration
 import com.example.solution.domain.registration.repository.RegistrationRepository

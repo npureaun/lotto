@@ -1,6 +1,6 @@
-package com.example.solution.domain.exeption
+package com.example.solution.exeption
 
-import com.example.solution.domain.exeption.dto.ErrorDto
+import com.example.solution.exeption.dto.ErrorDto
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
