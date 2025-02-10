@@ -5,7 +5,7 @@ import com.example.solution.domain.registration.dto.RegistrationResponse
 data class LottoResultResponse(
     val lottoId: Long,
     val lottoNumber: String,
-    val userNumber:String,
+    val phoneNumber:String,
     val rank:Int
 ){
     companion object{
@@ -13,7 +13,7 @@ data class LottoResultResponse(
             return LottoResultResponse(
                 lottoId = registrationDto.lottoId,
                 lottoNumber = registrationDto.lottoNumber,
-                userNumber = registrationDto.userNumber,
+                phoneNumber = registrationDto.phoneNumber,
                 rank = registrationDto.rank
             )
         }

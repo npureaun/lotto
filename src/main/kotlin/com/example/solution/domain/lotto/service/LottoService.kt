@@ -4,7 +4,7 @@ import com.example.solution.domain.lotto.dto.LottoResultResponse
 import com.example.solution.domain.lotto.dto.LottoUseResponse
 
 interface LottoService {
-    fun useLotto(number:String): LottoUseResponse
-    fun generateLotto(number: String, lottoNumber:String)
-    fun getLottoResult(number: String):LottoResultResponse
+    fun useLotto(phone:String): LottoUseResponse
+    fun generateLotto(phone: String, lottoNumber:String)
+    fun getLottoResult(phone: String):LottoResultResponse
 }

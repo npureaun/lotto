@@ -3,7 +3,7 @@ package com.example.solution.domain.registration.service
 import com.example.solution.domain.registration.dto.RegistrationResponse
 
 interface RegistrationService {
-    fun checkNumber(number: String, checkParam:Boolean= true)
-    fun setRegistrationNumber(lottoId:Long,number: String)
-    fun getRegistrationNumber(number: String): RegistrationResponse
+    fun checkNumber(phone: String, checkParam:Boolean= true)
+    fun setRegistrationNumber(lottoId:Long,phone: String)
+    fun getRegistrationNumber(phone: String): RegistrationResponse
 }

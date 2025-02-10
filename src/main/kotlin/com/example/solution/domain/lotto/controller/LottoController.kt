@@ -59,20 +59,20 @@ class LottoController(
     }
 
     @PostMapping("/use")
-    fun registration(@RequestParam number:String)
+    fun registration(@RequestParam phone:String)
     :ResponseEntity<LottoUseResponse>{
         return ResponseEntity.status(HttpStatus.OK)
-            .body(lottoService.useLotto(number))
+            .body(lottoService.useLotto(phone))
     }
 
     @GetMapping("/result")
-    fun getLottoResult(@RequestParam number: String):ResponseEntity<LottoResultResponse>{
-        return ResponseEntity.ok().body(lottoService.getLottoResult(number))
+    fun getLottoResult(@RequestParam phone: String):ResponseEntity<LottoResultResponse>{
+        return ResponseEntity.ok().body(lottoService.getLottoResult(phone))
     }
 
     @PostMapping("/generate")
-    fun generateLotto(@RequestParam number: String,@RequestParam lottoNumber:String):ResponseEntity<Unit>{
+    fun generateLotto(@RequestParam phone: String,@RequestParam lottoNumber:String):ResponseEntity<Unit>{
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(lottoService.generateLotto(number,lottoNumber))
+            .body(lottoService.generateLotto(phone,lottoNumber))
     }
 }

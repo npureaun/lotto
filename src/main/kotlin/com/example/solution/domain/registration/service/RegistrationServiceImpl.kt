@@ -12,8 +12,8 @@ class RegistrationServiceImpl(
 ):RegistrationService{
 
     // checkParam? true= 번호가 존재하면 예외 / false= 번호가 존재하지 않으면 예외
-    override fun checkNumber(number: String, checkParam: Boolean) {
-        val exists = registrationRepository.existsByNumber(number)
+    override fun checkNumber(phone: String, checkParam: Boolean) {
+        val exists = registrationRepository.existsByNumber(phone)
 
         if (checkParam && exists) {
             throw IllegalArgumentException("이미 발급된 번호입니다.")
@@ -22,12 +22,12 @@ class RegistrationServiceImpl(
         }
     }
 
-    override fun getRegistrationNumber(number: String): RegistrationResponse {
-        return registrationRepository.findByNumberWithLotto(number)
+    override fun getRegistrationNumber(phone: String): RegistrationResponse {
+        return registrationRepository.findByNumberWithLotto(phone)
             ?: throw ExistEntityException("엔티티가 존재하지 않습니다.")
     }
 
-    override fun setRegistrationNumber(lottoId:Long,number: String){
-        registrationRepository.save(Registration(number,lottoId))
+    override fun setRegistrationNumber(lottoId:Long,phone: String){
+        registrationRepository.save(Registration(phone,lottoId))
     }
 }

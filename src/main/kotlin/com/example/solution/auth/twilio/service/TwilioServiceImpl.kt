@@ -4,8 +4,12 @@ import com.example.solution.util.`object`.EncodeUtils
 import com.example.solution.config.TwilioConfig
 import com.example.solution.auth.twilio.dto.UserVerifyCheckRequestDto
 import com.example.solution.auth.twilio.dto.UserVerifyCodeRequestDto
+import com.twilio.rest.api.v2010.account.Message
 import com.twilio.rest.verify.v2.service.Verification
 import com.twilio.rest.verify.v2.service.VerificationCheck
+import com.twilio.type.Client
+import com.twilio.type.PhoneNumber
+import io.jsonwebtoken.io.IOException
 import org.springframework.context.annotation.Configuration
 import org.springframework.stereotype.Service
 
@@ -39,9 +43,26 @@ class TwilioServiceImpl(
                 .setCode(userVerifyCheckRequestDto.code)
                 .create()
             check(verificationCheck.valid)
-        } catch (e: Exception) {
+        } catch (e: IOException) {
+            throw IOException("발송 실패")
+        }catch (e: Exception) {
             throw IllegalStateException("인증 실패")
         }
         return "인증 번호 검증 성공"
+    }
+
+    override fun sendSms(phone: String, message: String) {
+        val e164FormatPhoneNumber = PhoneNumber(EncodeUtils.getE164FormatPhoneNumber(phone))
+        try {
+            val sendMessage = Message.creator(
+                e164FormatPhoneNumber,
+                twilioConfig.getFromPhone(),
+                message
+            ).create()
+
+            println(sendMessage.body)
+        } catch (e: Exception) {
+            throw IOException(e.message)
+        }
     }
 }
