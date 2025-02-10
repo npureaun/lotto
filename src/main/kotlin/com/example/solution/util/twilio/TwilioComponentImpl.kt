@@ -1,22 +1,20 @@
-package com.example.solution.auth.twilio.service
+package com.example.solution.util.twilio
 
 import com.example.solution.util.`object`.EncodeUtils
 import com.example.solution.config.TwilioConfig
-import com.example.solution.auth.twilio.dto.UserVerifyCheckRequestDto
-import com.example.solution.auth.twilio.dto.UserVerifyCodeRequestDto
+import com.example.solution.auth.dto.UserVerifyCheckRequestDto
+import com.example.solution.auth.dto.UserVerifyCodeRequestDto
 import com.twilio.rest.api.v2010.account.Message
 import com.twilio.rest.verify.v2.service.Verification
 import com.twilio.rest.verify.v2.service.VerificationCheck
-import com.twilio.type.Client
 import com.twilio.type.PhoneNumber
 import io.jsonwebtoken.io.IOException
-import org.springframework.context.annotation.Configuration
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 
-@Service
-class TwilioServiceImpl(
+@Component
+class TwilioComponentImpl(
     private val twilioConfig: TwilioConfig
-): TwilioService {
+): TwilioComponent {
     // 인증 번호 요청
     override fun verification(userVerifyCodeRequestDto: UserVerifyCodeRequestDto): String {
         val e164FormatPhoneNumber: String = EncodeUtils.getE164FormatPhoneNumber(userVerifyCodeRequestDto.phone)

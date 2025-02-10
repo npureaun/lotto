@@ -1,6 +1,6 @@
 package com.example.solution.domain.lotto.service
 
-import com.example.solution.auth.twilio.service.TwilioService
+import com.example.solution.util.twilio.TwilioComponent
 import com.example.solution.domain.lotto.dto.LottoResultResponse
 import com.example.solution.domain.lotto.dto.LottoUseResponse
 import com.example.solution.domain.lotto.entity.Lotto
@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock
 class LottoServiceImpl(
     private val registrationService: RegistrationService,
     private val lottoRepository: LottoRepository,
-    private val twilioService: TwilioService
+    private val twilioComponent: TwilioComponent
 ):LottoService {
 
     companion object {
@@ -53,7 +53,7 @@ class LottoServiceImpl(
             //3. 로또ID 와 유저 핸드폰 번호 저장
             registrationService.setRegistrationNumber(lotto.id!!, phone)
 
-            twilioService.sendSms(phone,"lotto number [${lotto.number}]")
+            twilioComponent.sendSms(phone,"lotto number [${lotto.number}]")
 
             return LottoUseResponse(lotto.number, phone)
         } catch (e: Exception) {

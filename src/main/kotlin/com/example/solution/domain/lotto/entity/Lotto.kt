@@ -104,7 +104,7 @@ class Lotto(
             generateNumber(mainNumber,3,950)
                 .forEach { lottoList.add(Lotto(it,4)) }
 
-            generateNumber(mainNumber,0,10000-(950-44-5-1))
+            generateNumber(mainNumber,0,10000-(950+44+5+1))
                 .forEach { lottoList.add(Lotto(it,0)) }
 
             return shuffleLotto(lottoList)

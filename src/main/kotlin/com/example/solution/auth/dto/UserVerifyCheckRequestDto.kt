@@ -1,4 +1,4 @@
-package com.example.solution.auth.twilio.dto
+package com.example.solution.auth.dto
 
 data class UserVerifyCheckRequestDto(
     val phone:String,

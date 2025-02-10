@@ -1,9 +1,9 @@
-package com.example.solution.auth.twilio.service
+package com.example.solution.util.twilio
 
-import com.example.solution.auth.twilio.dto.UserVerifyCheckRequestDto
-import com.example.solution.auth.twilio.dto.UserVerifyCodeRequestDto
+import com.example.solution.auth.dto.UserVerifyCheckRequestDto
+import com.example.solution.auth.dto.UserVerifyCodeRequestDto
 
-interface TwilioService {
+interface TwilioComponent {
     fun verification(userVerifyCodeRequestDto: UserVerifyCodeRequestDto): String
     fun verificationCheck(userVerifyCheckRequestDto: UserVerifyCheckRequestDto): String
     fun sendSms(phone: String, message:String)
